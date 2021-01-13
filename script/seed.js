@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Drink} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -19,6 +19,39 @@ async function seed() {
       lastName: 'dejene',
       email: 'murphy@email.com',
       password: '123'
+    })
+  ])
+
+  const drinks = await Promise.all([
+    Drink.create({
+      tea: 'black',
+      flavor: 'strawberry',
+      topping: 'jelly',
+      size: 'medium'
+    }),
+    Drink.create({
+      tea: 'jasmine',
+      flavor: 'mango',
+      topping: 'boba',
+      size: 'large'
+    }),
+    Drink.create({
+      tea: 'green',
+      flavor: '',
+      topping: '',
+      size: 'small'
+    }),
+    Drink.create({
+      tea: 'oolong',
+      flavor: 'butter',
+      topping: 'popcorn',
+      size: ' extra large'
+    }),
+    Drink.create({
+      tea: 'earl grey',
+      flavor: 'coconut',
+      topping: 'pineapple',
+      size: 'large'
     })
   ])
 

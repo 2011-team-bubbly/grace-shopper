@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import DrinkCard from './DrinkCard'
 
 export class AllDrinks extends React.Component {
   componentDidMount() {}
@@ -9,27 +10,12 @@ export class AllDrinks extends React.Component {
       <div>
         <h1>All Drinks</h1>
         <div className="all-drinks">
-          <div className="single-drink">
-            <img src="https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png" />
-            <p>Tea Type</p>
-            <p>Flavor</p>
-            <p>Topping</p>
-            <p>Size</p>
-          </div>
-          <div className="single-drink">
-            <img src="https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png" />
-            <p>Tea Type</p>
-            <p>Flavor</p>
-            <p>Topping</p>
-            <p>Size</p>
-          </div>
-          <div className="single-drink">
-            <img src="https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png" />
-            <p>Tea Type</p>
-            <p>Flavor</p>
-            <p>Topping</p>
-            <p>Size</p>
-          </div>
+          <DrinkCard />
+          <DrinkCard />
+          <DrinkCard />
+          <DrinkCard />
+          <DrinkCard />
+          <DrinkCard />
         </div>
       </div>
     )

@@ -124,6 +124,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _DrinkCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DrinkCard */ "./client/components/DrinkCard.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -141,6 +142,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -163,19 +165,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All Drinks"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "all-drinks"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "single-drink"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "single-drink"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "single-drink"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size"))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DrinkCard__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DrinkCard__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DrinkCard__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DrinkCard__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DrinkCard__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DrinkCard__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
     }
   }]);
 
@@ -189,6 +179,31 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {};
 }; // export default connect(mapState, mapDispatch)(AllDrinks);
+
+/***/ }),
+
+/***/ "./client/components/DrinkCard.js":
+/*!****************************************!*\
+  !*** ./client/components/DrinkCard.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var DrinkCard = function DrinkCard(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "single-drink"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DrinkCard);
 
 /***/ }),
 
@@ -44390,7 +44405,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

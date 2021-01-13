@@ -165,11 +165,17 @@ function (_React$Component) {
         className: "all-drinks"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-drink"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-drink"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "single-drink"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size"))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://graphics.straitstimes.com/STI/STIMEDIA/Interactives/2017/01/desserts-quiz/images/compare-bubble-tea.png"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tea Type"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Flavor"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topping"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Size"))));
     }
   }]);
 

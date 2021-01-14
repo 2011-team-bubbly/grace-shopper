@@ -33,18 +33,15 @@ describe('teas routes', () => {
     })
 
     it('GET /api/teas/:teaId', async () => {
-      // const nuTea= Tea.create({
-      //   type: 'green',
-      //   flavor: 'vanilla',
-      //   topping: 'boba',
-      //   size: 'small'
-      // })
       const res = await request(app)
         .get(`/api/teas/` + 1)
         .expect(200)
 
       expect(res.body).to.be.an('object')
-      //expect(res.body.type))
+      expect(res.body.type).to.be.equal(teatype)
+      expect(res.body.flavor).to.be.equal('bones')
+      expect(res.body.topping).to.be.equal('boba')
+      expect(res.body.size).to.be.equal('small')
     })
   })
 })

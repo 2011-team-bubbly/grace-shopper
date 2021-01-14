@@ -23,6 +23,18 @@ const Tea = db.define('tea', {
     validate: {
       notEmpty: true
     }
+  },
+  price: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
+    }
+  },
+  inventory: {
+    type: Sequelize.INTEGER,
+    validate: {
+      min: 0
+    }
   }
 })
 

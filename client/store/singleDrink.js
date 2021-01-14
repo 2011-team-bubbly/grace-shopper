@@ -4,13 +4,12 @@ import Axios from 'axios'
  * ACTION TYPES
  */
 const GET_DRINK = 'GET_DRINK'
-const REMOVE_DRINK = 'REMOVE_DRINK'
 
 /**
  * ACTION CREATORS
  */
 const getDrink = drink => ({type: GET_DRINK, drink})
-const removeDrink = drink => ({type: REMOVE_DRINK, drink})
+
 /**
  * THUNK CREATORS
  */
@@ -20,15 +19,6 @@ export const gettingSingleDrink = id => async dispatch => {
     dispatch(getDrink(data))
   } catch (err) {
     console.log('There was an error in the axios gettingSingleDrink', err)
-  }
-}
-
-export const deleteDrink = id => async dispatch => {
-  try {
-    await Axios.delete(`/api/drinks/${id}`)
-    dispatch(removeDrink(id))
-  } catch (error) {
-    console.log('There was a problem removing drink in axios delete', error)
   }
 }
 

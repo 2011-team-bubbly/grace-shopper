@@ -5,7 +5,7 @@ import Axios from 'axios'
  */
 const GET_DRINK = 'GET_DRINK'
 
-/**
+/**S
  * ACTION CREATORS
  */
 const getDrink = drink => ({type: GET_DRINK, drink})
@@ -30,7 +30,7 @@ const singleDrink = {}
 /**
  * REDUCER
  */
-export default function(state = singleDrink, action) {
+export default function singleDrinkReducer(state = singleDrink, action) {
   switch (action.type) {
     case GET_DRINK:
       return action.drink

@@ -12,7 +12,7 @@ describe('teas routes', () => {
   })
 
   describe('/api/teas/', () => {
-    const teatype = 'jasmine'
+    const teatype = 'jasmin'
 
     beforeEach(() => {
       return Tea.create({
@@ -33,11 +33,17 @@ describe('teas routes', () => {
     })
 
     it('GET /api/teas/:teaId', async () => {
-      const req = await request(app)
-        .get('/api/teas/:teaId')
+      // const nuTea= Tea.create({
+      //   type: 'green',
+      //   flavor: 'vanilla',
+      //   topping: 'boba',
+      //   size: 'small'
+      // })
+      const res = await request(app)
+        .get(`/api/teas/1`)
         .expect(200)
 
-      expect(req.params.teaId).to.be.an('object')
+      expect(res.body.teaId).to.be.a('object')
     })
   })
 })

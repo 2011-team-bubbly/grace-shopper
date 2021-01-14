@@ -2,36 +2,40 @@
 
 const {expect} = require('chai')
 const db = require('../index')
-const Drink = db.model('drink')
+const Tea = db.model('tea')
 
-describe('Drink model', () => {
-  let drink
+describe('Tea model', () => {
+  let tea
   before(() => db.sync({force: true}))
   beforeEach(() => {
-    drink = {
-      tea: 'green',
+    tea = {
+      type: 'green',
       flavor: 'bones',
       topping: 'boba',
-      size: 'small'
+      size: 'small',
+      price: 500,
+      inventory: 5
     }
   })
   afterEach(() => db.sync({force: true}))
 
-  it('has fields tea, flavor, topping, size', async () => {
-    drink.notARealAttribute = 'does not compute'
-    const savedDrink = await Drink.create(drink)
-    expect(savedDrink.tea).to.equal('green')
+  it('has fields type, flavor, topping, size, price, inventory', async () => {
+    tea.notARealAttribute = 'does not compute'
+    const savedDrink = await Tea.create(tea)
+    expect(savedDrink.type).to.equal('green')
     expect(savedDrink.flavor).to.equal('bones')
     expect(savedDrink.topping).to.equal('boba')
     expect(savedDrink.size).to.equal('small')
+    expect(savedDrink.price).to.equal(500)
+    expect(savedDrink.inventory).to.equal(5)
     expect(savedDrink.notARealAttribute).to.equal(undefined)
   })
 
   it('flavor cannot be null', async () => {
-    drink.flavor = null
+    tea.flavor = null
     try {
-      const emptyDrinkFlavor = await Drink.create(drink)
-      if (emptyDrinkFlavor) {
+      const nullTeaFlavor = await Tea.create(tea)
+      if (nullTeaFlavor) {
         //this should not happen because Sequelize should reject this due to tea = ''
         throw Error('Validation should have failed with invalid')
       }
@@ -42,10 +46,10 @@ describe('Drink model', () => {
   })
 
   it('topping cannot be null', async () => {
-    drink.topping = null
+    tea.topping = null
     try {
-      const emptyDrinkTopping = await Drink.create(drink)
-      if (emptyDrinkTopping) {
+      const nullTeaTopping = await Tea.create(tea)
+      if (nullTeaTopping) {
         //this should not happen because Sequelize should reject this due to tea = ''
         throw Error('Validation should have failed with invalid')
       }
@@ -55,11 +59,11 @@ describe('Drink model', () => {
     }
   })
 
-  it('tea cannot be null or an empty string', async () => {
-    drink.tea = ''
+  it('type cannot be null or an empty string', async () => {
+    tea.type = ''
     try {
-      const emptyDrinkTea = await Drink.create(drink)
-      if (emptyDrinkTea) {
+      const emptyTeaType = await Tea.create(tea)
+      if (emptyTeaType) {
         //this should not happen because Sequelize should reject this due to tea = ''
         throw Error('Validation should have failed with invalid')
       }
@@ -69,10 +73,10 @@ describe('Drink model', () => {
     }
 
     //test for null
-    drink.tea = null
+    tea.type = null
     try {
-      const emptyDrinkTea = await Drink.create(drink)
-      if (emptyDrinkTea) {
+      const nullTeaType = await Tea.create(tea)
+      if (nullTeaType) {
         throw Error('Validation should have failed with invalid')
       }
     } catch (error) {
@@ -81,10 +85,10 @@ describe('Drink model', () => {
   })
 
   it('size cannot be null or an empty string', async () => {
-    drink.size = ''
+    tea.size = ''
     try {
-      const emptyDrinkSize = await Drink.create(drink)
-      if (emptyDrinkSize) {
+      const emptyTeaSize = await Tea.create(tea)
+      if (emptyTeaSize) {
         //this should not happen because Sequelize should reject this due to tea = ''
         throw Error('Validation should have failed with invalid')
       }
@@ -94,10 +98,10 @@ describe('Drink model', () => {
     }
 
     //test for null
-    drink.size = null
+    tea.size = null
     try {
-      const emptyDrinkSize = await Drink.create(drink)
-      if (emptyDrinkSize) {
+      const nullteaSize = await Tea.create(tea)
+      if (nullteaSize) {
         throw Error('Validation should have failed with invalid')
       }
     } catch (error) {
@@ -105,26 +109,27 @@ describe('Drink model', () => {
     }
   })
 
-  // describe('drink model', () => {
-  //   describe('proper drink', () => {
-  //     let drink1
+  it('price cannot be less than 0', async () => {
+    tea.price = -1
+    try {
+      const negativeTeaPrice = await Tea.create(tea)
+      if (negativeTeaPrice) {
+        throw Error('Validation should have failed with invalid')
+      }
+    } catch (error) {
+      expect(error.message).to.not.have.string('Validation should have failed')
+    }
+  })
 
-  //     beforeEach(async () => {
-  //       drink1 = await Drink.create({
-  //         tea: 'codycom',
-  //         flavor: 'bones',
-  //         topping: 'blue',
-  //         size: 'woof'
-  //       })
-  //     })
-
-  //     it('returns a drink', () => {
-  //       expect(drink1).to.be.equal(true)
-  //     })
-
-  //     it('returns false if the password is incorrect', () => {
-  //       expect(cody.correctPassword('bonez')).to.be.equal(false)
-  //     })
-  //   }) // end describe('correctPassword')
-  // }) // end describe('instanceMethods')
-}) // end describe('Drink model')
+  it('inventory cannot be less than 0', async () => {
+    tea.inventory = -1
+    try {
+      const negativeTeaInventory = await Tea.create(tea)
+      if (negativeTeaInventory) {
+        throw Error('Validation should have failed with invalid')
+      }
+    } catch (error) {
+      expect(error.message).to.not.have.string('Validation should have failed')
+    }
+  })
+})

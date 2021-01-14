@@ -1,8 +1,7 @@
 const User = require('./user')
-const Drink = require('./drink')
+const Tea = require('./tea')
 const Order = require('./order')
 const OrderItem = require('./orderItem')
-
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -13,8 +12,8 @@ const OrderItem = require('./orderItem')
 
 User.hasMany(Order)
 Order.belongsTo(User)
-Order.belongsToMany(Drink, {through: OrderItem})
-Drink.belongsToMany(Order, {through: OrderItem})
+Order.belongsToMany(Tea, {through: OrderItem})
+Tea.belongsToMany(Order, {through: OrderItem})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -24,7 +23,7 @@ Drink.belongsToMany(Order, {through: OrderItem})
  */
 module.exports = {
   User,
-  Drink,
+  Tea,
   Order,
   OrderItem
 }

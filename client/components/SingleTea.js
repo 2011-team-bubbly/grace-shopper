@@ -12,12 +12,12 @@ class SingleTea extends Component {
       size: '',
       price: ''
     }
-    this.onAddToChartHandler = this.onAddToChartHandler.bind(this)
+    this.onAddToCartHandler = this.onAddToCartHandler.bind(this)
   }
-  async componentDidMount() {
-    await this.props.loadSingleProject(this.props.match.params.teaId)
+  componentDidMount() {
+    this.props.loadSingleTea(this.props.match.params.teaId)
   }
-  onAddToChartHandler() {
+  onAddToCartHandler() {
     alert('this item has been added to your chart')
   }
   render() {
@@ -25,20 +25,20 @@ class SingleTea extends Component {
     return (
       <div>
         <main id="individual-tea">
-          <body>
+          <div>
             <p>type: {singleTeaInReact.type}</p>
             <p> flavor: {singleTeaInReact.flavor}</p>
             <p> topping: {singleTeaInReact.topping}</p>
             <p> price: {singleTeaInReact.price}</p>
             <button
-              id="addToChart"
+              id="addToCart"
               type="submit"
-              name="addToChart"
-              onClick={this.onAddToChartHandler}
+              name="addToCart"
+              onClick={this.onAddToCartHandler}
             >
-              ADD To Chart
+              ADD To Cart
             </button>
-          </body>
+          </div>
         </main>
         <div />
       </div>
@@ -47,7 +47,7 @@ class SingleTea extends Component {
 }
 const mapStateToProps = state => {
   return {
-    singleTeaInReact: state.singleDrinkReducer.drink
+    singleTeaInReact: state.singleDrinkReducer
   }
 }
 

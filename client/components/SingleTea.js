@@ -7,10 +7,10 @@ class SingleTea extends Component {
     super(props)
     this.state = {
       type: '',
-      falvor: '',
+      flavor: '',
       topping: '',
       size: '',
-      price: ''
+      price: Number
     }
     this.onAddToCartHandler = this.onAddToCartHandler.bind(this)
   }
@@ -18,7 +18,13 @@ class SingleTea extends Component {
     this.props.loadSingleTea(this.props.match.params.teaId)
   }
   onAddToCartHandler() {
-    alert('this item has been added to your chart')
+    let products = []
+    if (localStorage.getItem('products')) {
+      products = JSON.parse(localStorage.getItem('products'))
+    }
+    products.push(this.props.singleTeaInReact)
+    localStorage.setItem('products', JSON.stringify(products))
+    // alert('this item has been added to your chart')
   }
   render() {
     const {singleTeaInReact} = this.props
@@ -29,7 +35,7 @@ class SingleTea extends Component {
             <p>type: {singleTeaInReact.type}</p>
             <p> flavor: {singleTeaInReact.flavor}</p>
             <p> topping: {singleTeaInReact.topping}</p>
-            <p> price: {singleTeaInReact.price}</p>
+            <p> price: ${singleTeaInReact.price / 100}</p>
             <button
               id="addToCart"
               type="submit"

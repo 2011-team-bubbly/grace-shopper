@@ -63,31 +63,36 @@ async function seed() {
       type: 'black',
       flavor: 'strawberry',
       topping: 'jelly',
-      size: 'medium'
+      size: 'medium',
+      price: 499
     }),
     Tea.create({
       type: 'jasmine',
       flavor: 'mango',
       topping: 'boba',
-      size: 'large'
+      size: 'large',
+      price: 599
     }),
     Tea.create({
       type: 'green',
       flavor: '',
       topping: '',
-      size: 'small'
+      size: 'small',
+      price: 399
     }),
     Tea.create({
       type: 'oolong',
       flavor: 'butter',
       topping: 'popcorn',
-      size: ' extra large'
+      size: ' extra large',
+      price: 9999
     }),
     Tea.create({
       type: 'earl grey',
       flavor: 'coconut',
       topping: 'pineapple',
-      size: 'large'
+      size: 'large',
+      price: 800
     }),
     Tea.create({
       type: 'black',

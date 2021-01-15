@@ -8,6 +8,8 @@ const Cart = ({user}) => {
   useEffect(() => {
     if (user) {
       //axios request to get all their Order items?
+      let localCart = JSON.parse(localStorage.getItem('products'))
+      if (localCart) setProducts(localCart)
     } else {
       let localCart = JSON.parse(localStorage.getItem('products'))
       if (localCart) setProducts(localCart)
@@ -36,12 +38,7 @@ const Cart = ({user}) => {
     )
   }
 
-  return (
-    <div id="cart">
-      HELLO!
-      {products.length ? handleCart() : null}
-    </div>
-  )
+  return <div id="cart">{products.length ? handleCart() : 'EMPTY'}</div>
 }
 
 const mapState = state => {

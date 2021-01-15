@@ -7,10 +7,10 @@ class SingleTea extends Component {
     super(props)
     this.state = {
       type: '',
-      falvor: '',
+      flavor: '',
       topping: '',
       size: '',
-      price: ''
+      price: Number
     }
     this.onAddToCartHandler = this.onAddToCartHandler.bind(this)
   }
@@ -35,7 +35,7 @@ class SingleTea extends Component {
             <p>type: {singleTeaInReact.type}</p>
             <p> flavor: {singleTeaInReact.flavor}</p>
             <p> topping: {singleTeaInReact.topping}</p>
-            <p> price: {singleTeaInReact.price}</p>
+            <p> price: ${singleTeaInReact.price / 100}</p>
             <button
               id="addToCart"
               type="submit"

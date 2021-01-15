@@ -14,10 +14,32 @@ const Cart = ({user}) => {
     }
   }, [])
 
+  const handleCartItems = () => {
+    return products.map(product => (
+      <CartItem key={product.id} product={product} />
+    ))
+  }
+
+  const handleSubtotal = () => {
+    let subtotal = products.reduce((accumulator, currentVal) => {
+      return accumulator + currentVal.price
+    }, 0)
+
+    return <div>SUBTOTAL: ${subtotal / 100}</div>
+  }
+
+  const handleCart = () => {
+    return (
+      <div>
+        {handleCartItems()} {handleSubtotal()}
+      </div>
+    )
+  }
+
   return (
     <div id="cart">
       HELLO!
-      {products.map(product => <CartItem key={product.id} product={product} />)}
+      {products.length ? handleCart() : null}
     </div>
   )
 }

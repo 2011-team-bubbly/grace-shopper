@@ -18,7 +18,13 @@ class SingleTea extends Component {
     this.props.loadSingleTea(this.props.match.params.teaId)
   }
   onAddToCartHandler() {
-    alert('this item has been added to your chart')
+    let products = []
+    if (localStorage.getItem('products')) {
+      products = JSON.parse(localStorage.getItem('products'))
+    }
+    products.push(this.props.singleTeaInReact)
+    localStorage.setItem('products', JSON.stringify(products))
+    // alert('this item has been added to your chart')
   }
   render() {
     const {singleTeaInReact} = this.props

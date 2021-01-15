@@ -10,7 +10,6 @@ const Cart = ({user}) => {
       //axios request to get all their Order items?
     } else {
       let localCart = JSON.parse(localStorage.getItem('products'))
-
       if (localCart) setProducts(localCart)
     }
   }, [])

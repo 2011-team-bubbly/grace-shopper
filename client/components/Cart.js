@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
+import PaginationCart from './PaginationCart'
 
 const Cart = ({user}) => {
   const [products, setProducts] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage] = useState(3)
 
   useEffect(() => {
     if (user) {
@@ -16,8 +19,17 @@ const Cart = ({user}) => {
     }
   }, [])
 
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  )
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+
   const handleCartItems = () => {
-    return products.map(product => (
+    return currentProducts.map(product => (
       <CartItem key={product.id} product={product} />
     ))
   }
@@ -33,7 +45,12 @@ const Cart = ({user}) => {
   const handleCart = () => {
     return (
       <div>
-        {handleCartItems()} {handleSubtotal()}
+        {handleSubtotal()} {handleCartItems()}
+        <PaginationCart
+          productsPerPage={productsPerPage}
+          totalProducts={products.length}
+          paginate={paginate}
+        />
       </div>
     )
   }

@@ -9,25 +9,52 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      firstName: 'mati',
-      lastName: 'dejene',
-      email: 'cody@email.com',
-      password: '123',
-      admin: false
+      firstName: 'Mati',
+      lastName: 'Dejene',
+      email: 'mati@email.com',
+      password: '123'
     }),
     User.create({
-      firstName: 'mati',
-      lastName: 'dejene',
-      email: 'murphy@email.com',
-      password: '123',
-      admin: true
+      firstName: 'M',
+      lastName: 'D',
+      email: 'md@email.com',
+      password: '123'
     }),
     User.create({
-      firstName: 'react',
-      lastName: 'redux',
-      email: 'react@email.com',
-      password: '12345',
-      admin: true
+      firstName: 'Eric',
+      lastName: 'Zou',
+      email: 'eric@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'E',
+      lastName: 'Z',
+      email: 'ez@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'Leon',
+      lastName: 'Zhao',
+      email: 'Leon@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'L',
+      lastName: 'Z',
+      email: 'lz@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'Naomi',
+      lastName: 'Diaz',
+      email: 'naomi@email.com',
+      password: '123'
+    }),
+    User.create({
+      firstName: 'N',
+      lastName: 'D',
+      email: 'nd@email.com',
+      password: '123'
     })
   ])
 
@@ -72,7 +99,7 @@ async function seed() {
       flavor: 'blueberry',
       topping: 'jelly',
       size: 'medium',
-      price: 5000
+      price: 500
     }),
     Tea.create({
       type: 'jasmine',
@@ -86,21 +113,231 @@ async function seed() {
       flavor: '',
       topping: 'boba',
       size: 'small',
-      price: 4000
+      price: 400
     }),
     Tea.create({
       type: 'oolong',
       flavor: 'vanilla',
       topping: 'boba',
       size: ' extra large',
-      price: 7000
+      price: 700
     }),
     Tea.create({
       type: 'earl grey',
       flavor: 'coconut',
       topping: 'rasberry',
       size: 'medium',
-      price: 5000
+      price: 500
+    }),
+    Tea.create({
+      type: 'blackberry',
+      flavor: 'strawberry',
+      topping: 'jelly',
+      size: 'medium',
+      price: 499
+    }),
+    Tea.create({
+      type: 'orange',
+      flavor: 'mango',
+      topping: 'boba',
+      size: 'large',
+      price: 599
+    }),
+    Tea.create({
+      type: 'jasmine',
+      flavor: '',
+      topping: '',
+      size: 'small',
+      price: 399
+    }),
+    Tea.create({
+      type: 'oolong',
+      flavor: 'vanilla',
+      topping: '',
+      size: ' extra large',
+      price: 999
+    }),
+    Tea.create({
+      type: 'earl grey',
+      flavor: 'coconut',
+      topping: 'boba',
+      size: 'large',
+      price: 800
+    }),
+    Tea.create({
+      type: 'blackcherry',
+      flavor: 'blueberry',
+      topping: 'jelly',
+      size: 'medium',
+      price: 500
+    }),
+    Tea.create({
+      type: 'jasmine',
+      flavor: '',
+      topping: 'boba',
+      size: 'large',
+      price: 600
+    }),
+    Tea.create({
+      type: 'chai',
+      flavor: 'pasion',
+      topping: 'boba',
+      size: 'small',
+      price: 400
+    }),
+    Tea.create({
+      type: 'oolong',
+      flavor: 'vanilla',
+      topping: 'grape',
+      size: ' extra large',
+      price: 700
+    }),
+    Tea.create({
+      type: 'grape',
+      flavor: 'coconut',
+      topping: 'rasberry',
+      size: 'small',
+      price: 400
+    }),
+    Tea.create({
+      type: 'black',
+      flavor: 'strawberry',
+      topping: 'jelly',
+      size: 'large',
+      price: 600
+    }),
+    Tea.create({
+      type: 'jasmine',
+      flavor: 'mango',
+      topping: 'boba',
+      size: 'extra large',
+      price: 700
+    }),
+    Tea.create({
+      type: 'green',
+      flavor: 'ginger',
+      topping: '',
+      size: 'small',
+      price: 399
+    }),
+    Tea.create({
+      type: 'oolong',
+      flavor: 'butter',
+      topping: 'popcorn',
+      size: 'large',
+      price: 800
+    }),
+    Tea.create({
+      type: 'earl grey',
+      flavor: 'pine',
+      topping: 'pineapple',
+      size: 'large',
+      price: 800
+    }),
+    Tea.create({
+      type: 'black',
+      flavor: 'peanut butter',
+      topping: 'jelly',
+      size: 'medium',
+      price: 500
+    }),
+    Tea.create({
+      type: 'jasmine',
+      flavor: 'jelly',
+      topping: 'boba',
+      size: 'large',
+      price: 6000
+    }),
+    Tea.create({
+      type: 'chai',
+      flavor: 'chocolate',
+      topping: 'boba',
+      size: 'small',
+      price: 400
+    }),
+    Tea.create({
+      type: 'oolong',
+      flavor: 'chocolate',
+      topping: 'boba',
+      size: ' extra large',
+      price: 700
+    }),
+    Tea.create({
+      type: 'earl grey',
+      flavor: 'milk',
+      topping: 'rasberry',
+      size: 'medium',
+      price: 500
+    }),
+    Tea.create({
+      type: 'blackberry',
+      flavor: 'blueberry',
+      topping: 'jelly',
+      size: 'medium',
+      price: 499
+    }),
+    Tea.create({
+      type: 'mint',
+      flavor: 'mango',
+      topping: 'boba',
+      size: 'large',
+      price: 599
+    }),
+    Tea.create({
+      type: 'jasmine',
+      flavor: 'raspberry',
+      topping: '',
+      size: 'small',
+      price: 399
+    }),
+    Tea.create({
+      type: 'oolong',
+      flavor: 'rum',
+      topping: '',
+      size: ' extra large',
+      price: 999
+    }),
+    Tea.create({
+      type: 'earl grey',
+      flavor: 'fudge',
+      topping: 'boba',
+      size: 'large',
+      price: 800
+    }),
+    Tea.create({
+      type: 'blackcherry',
+      flavor: 'watermelon',
+      topping: 'jelly',
+      size: 'medium',
+      price: 500
+    }),
+    Tea.create({
+      type: 'jasmine',
+      flavor: 'mango',
+      topping: 'boba',
+      size: 'extra large',
+      price: 900
+    }),
+    Tea.create({
+      type: 'chai',
+      flavor: 'pasion',
+      topping: '',
+      size: 'small',
+      price: 400
+    }),
+    Tea.create({
+      type: 'oolong',
+      flavor: 'vanilla',
+      topping: '',
+      size: ' extra large',
+      price: 700
+    }),
+    Tea.create({
+      type: 'milk',
+      flavor: 'coconut',
+      topping: 'rasberry',
+      size: 'medium',
+      price: 500
     })
   ])
 

@@ -1,7 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingSingleDrink} from '../store/singleDrink'
+
+import AdminPage from './Admin'
+
 import {addingTeaToCart} from '../store/cart'
+
 
 class SingleTea extends Component {
   constructor(props) {

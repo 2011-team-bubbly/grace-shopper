@@ -19,6 +19,7 @@ class AddTeaForm extends Component {
   }
 
   handleChange(evt) {
+    evt.preventDefault()
     this.setState({
       [evt.target.name]: evt.target.value
     })
@@ -26,6 +27,7 @@ class AddTeaForm extends Component {
 
   async handleSubmit(evt) {
     evt.preventDefault()
+
     const newTea = {
       type: this.state.type,
       flavor: this.state.flavor,
@@ -46,55 +48,58 @@ class AddTeaForm extends Component {
   }
 
   render() {
+    console.log('its tea form')
     const {type, price, imageUrl, topping} = this.state
-    const {handleChange, handleSubmit} = this.state
+    const {handleChange, handleSubmit} = this
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} method="post">
         <div>
-          <label>
-            Type:{' '}
-            <input
-              name="type"
-              type="text"
-              value={type}
-              onChange={handleChange}
-            />
-          </label>
+          <label htmlFor="type">type:</label>
+          <input
+            name="type"
+            type="text"
+            defaultValue={type}
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <label>
-            Topping:{' '}
-            <input
-              name="topping"
-              type="text"
-              value={topping}
-              onChange={handleChange}
-            />
-          </label>
+          <label htmlFor="topping">Topping:</label>
+          <input
+            name="topping"
+            type="text"
+            defaultValue={topping}
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <label>
-            Price:{' '}
-            <input
-              name="price"
-              type="text"
-              value={price}
-              onChange={handleChange}
-            />
-          </label>
+          <label htmlFor="price">Price: </label>
+          <input
+            name="price"
+            type="text"
+            defaultValue={price}
+            onChange={handleChange}
+          />
         </div>
         <div>
-          <label>
-            Image:{' '}
-            <input
-              name="imageUrl"
-              type="text"
-              value={imageUrl}
-              onChange={handleChange}
-            />
-          </label>
+          <label htmlFor="imageUrl"> image</label>
+
+          <input
+            name="imageUrl"
+            type="text"
+            defaultValue={imageUrl}
+            onChange={handleChange}
+          />
         </div>
         <div>
+          <div>
+            <label htmlFor="size">size:</label>
+            <input
+              name="size"
+              type="text"
+              defaultValue={topping}
+              onChange={handleChange}
+            />
+          </div>
           <button type="submit">Submit</button>
         </div>
       </form>

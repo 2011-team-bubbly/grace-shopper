@@ -46,14 +46,18 @@ router.post('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/me', async (req, res) => {
-  const userInfo = await User.findOne({
-    where: {
-      email: req.user.email
-    },
-    include: Order
-  })
-  res.json(userInfo)
+router.get('/me', async (req, res, next) => {
+  try {
+    const userInfo = await User.findOne({
+      where: {
+        email: req.user.email
+      },
+      include: Order
+    })
+    res.json(userInfo)
+  } catch (error) {
+    next(error)
+  }
 })
 
 router.use('/google', require('./google'))

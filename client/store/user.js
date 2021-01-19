@@ -33,11 +33,9 @@ export const me = () => async dispatch => {
 export const auth = (
   email,
   password,
-
   method,
   firstName,
   lastName
-
 ) => async dispatch => {
   let res
   try {

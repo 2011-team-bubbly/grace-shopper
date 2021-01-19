@@ -1,11 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
+
+import PaginationCart from './PaginationCart'
+
 import {fetchOrders, removeItem} from '../store/cart'
 import {me} from '../store/user'
 
+
 const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
   const [products, setProducts] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [productsPerPage] = useState(3)
 
   useEffect(
     () => {
@@ -52,9 +58,19 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
     }
   }
 
+  const indexOfLastProduct = currentPage * productsPerPage
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  )
+
+  const paginate = pageNumber => setCurrentPage(pageNumber)
+
   const handleCartItems = () => {
+
     console.log('products', products)
-    return products.map(product => (
+    return currentProducts.map(product => (
       <CartItem
         key={product.id}
         product={product}
@@ -74,7 +90,12 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
   const handleCart = () => {
     return (
       <div>
-        {handleCartItems()} {handleSubtotal()}
+        {handleSubtotal()} {handleCartItems()}
+        <PaginationCart
+          productsPerPage={productsPerPage}
+          totalProducts={products.length}
+          paginate={paginate}
+        />
       </div>
     )
   }

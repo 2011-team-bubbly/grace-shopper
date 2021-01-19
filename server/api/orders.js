@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const {Order, OrderItem} = require('../db/models')
+const {Order, OrderItem, Tea} = require('../db/models')
 module.exports = router
 
 router.get('/:orderId', async (req, res, next) => {
   try {
-    const order = await Order.findByPk(req.params.orderId)
+    const order = await Order.findByPk(req.params.orderId, {include: Tea})
     res.json(order)
   } catch (error) {
     next(error)
@@ -13,7 +13,6 @@ router.get('/:orderId', async (req, res, next) => {
 
 router.post('/:orderId', async (req, res, next) => {
   try {
-    console.log('inside orders api')
     const [orderItem, created] = await OrderItem.findOrCreate({
       where: {
         orderId: req.params.orderId,

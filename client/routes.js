@@ -7,6 +7,7 @@ import {me} from './store'
 import AllTeas from './components/AllTeas'
 import connectSingleTea from './components/SingleTea'
 import AdminPage from './components/Admin'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/allTeas" component={AllTeas} />
         <Route path="/allTeas/:teaId" component={connectSingleTea} />
+        <Route path="/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

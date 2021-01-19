@@ -5,6 +5,8 @@ const CartItem = ({product}) => {
     <div className="cartItem">
       <div>TYPE: {product.type}</div>
       <div>PRICE: ${product.price / 100}</div>
+      <div>QUANTITY: {product.orderItem.quantity}</div>
+      <button type="button">X</button>
     </div>
   )
 }

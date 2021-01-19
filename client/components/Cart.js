@@ -1,22 +1,42 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
+import {fetchOrders} from '../store/cart'
+import {me} from '../store/user'
 
-const Cart = ({user}) => {
+const Cart = ({user, loadOrderItems, cartItems, loadUser}) => {
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
-    if (user) {
-      //axios request to get all their Order items?
-      let localCart = JSON.parse(localStorage.getItem('products'))
-      if (localCart) setProducts(localCart)
-    } else {
-      let localCart = JSON.parse(localStorage.getItem('products'))
-      if (localCart) setProducts(localCart)
-    }
-  }, [])
+  useEffect(
+    () => {
+      const funk = async () => {
+        console.log('user', user)
+        if (user.orders) {
+          //axios request to get all their Order items?
+          console.log('in useeffect cart')
+          loadOrderItems(user.orders[0].id)
+          console.log('cartItems', cartItems)
+          // setProducts(cartItems)
+        } else {
+          console.log('failed conditional in Cart')
+          // let localCart = JSON.parse(localStorage.getItem('products'))
+          // if (localCart) setProducts(localCart)
+        }
+      }
+      funk()
+    },
+    [user]
+  )
+
+  useEffect(
+    () => {
+      setProducts(cartItems)
+    },
+    [cartItems]
+  )
 
   const handleCartItems = () => {
+    console.log('handleCart', products)
     return products.map(product => (
       <CartItem key={product.id} product={product} />
     ))
@@ -43,8 +63,16 @@ const Cart = ({user}) => {
 
 const mapState = state => {
   return {
-    user: state.user.id
+    user: state.user,
+    cartItems: state.cart.cartItems
   }
 }
 
-export default connect(mapState)(Cart)
+const mapDispatch = dispatch => {
+  return {
+    loadOrderItems: orderId => dispatch(fetchOrders(orderId)),
+    loadUser: () => dispatch(me())
+  }
+}
+
+export default connect(mapState, mapDispatch)(Cart)

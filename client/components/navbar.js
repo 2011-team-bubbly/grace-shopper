@@ -8,7 +8,6 @@ import Cart from './Cart'
 // import AdminPage from './Admin'
 const Navbar = ({handleClick, isLoggedIn, admin}) => {
   const [cartOpen, setCartOpen] = useState(false)
-
   const handleCart = () => {
     setCartOpen(!cartOpen)
   }
@@ -32,13 +31,11 @@ const Navbar = ({handleClick, isLoggedIn, admin}) => {
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
+  
         <Link to="/allTeas">All Teas</Link>
+        <Link to="/cart">Cart</Link>
         {admin && <Link to="/add">add tea</Link>}
+         
         <div>
           <button type="button" onClick={handleCart}>
             CART

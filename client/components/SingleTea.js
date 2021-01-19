@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingSingleDrink} from '../store/singleDrink'
-
+import {me} from '../store/user'
 import AdminPage from './Admin'
 
 import {addingTeaToCart} from '../store/cart'
@@ -20,6 +20,7 @@ class SingleTea extends Component {
   }
   componentDidMount() {
     this.props.loadSingleTea(this.props.match.params.teaId)
+    this.props.loadUser()
   }
   onAddToCartHandler(orderId, tea) {
     if (this.props.user.id) {
@@ -73,7 +74,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     loadSingleTea: teaId => dispatch(gettingSingleDrink(teaId)),
-    addTeaToCart: (orderId, tea) => dispatch(addingTeaToCart(orderId, tea))
+    addTeaToCart: (orderId, tea) => dispatch(addingTeaToCart(orderId, tea)),
+    loadUser: () => dispatch(me())
   }
 }
 

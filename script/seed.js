@@ -12,13 +12,22 @@ async function seed() {
       firstName: 'mati',
       lastName: 'dejene',
       email: 'cody@email.com',
-      password: '123'
+      password: '123',
+      admin: false
     }),
     User.create({
       firstName: 'mati',
       lastName: 'dejene',
       email: 'murphy@email.com',
-      password: '123'
+      password: '123',
+      admin: true
+    }),
+    User.create({
+      firstName: 'react',
+      lastName: 'redux',
+      email: 'react@email.com',
+      password: '12345',
+      admin: true
     })
   ])
 

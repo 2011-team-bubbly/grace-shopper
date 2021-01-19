@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingSingleDrink} from '../store/singleDrink'
-
+import AdminPage from './Admin'
 class SingleTea extends Component {
   constructor(props) {
     super(props)

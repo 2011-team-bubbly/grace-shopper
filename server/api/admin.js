@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Tea} = require('../db/models')
-module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
@@ -11,10 +10,11 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.post('/addTea', async (req, res, next) => {
+router.post('/add', async (req, res, next) => {
   try {
     const addTea = req.body
-    const newTea = await Tea.Create(addTea)
+    console.log('new tea', addTea)
+    const newTea = await Tea.create(addTea)
     res.json(newTea)
   } catch (error) {
     next(error)
@@ -28,3 +28,5 @@ router.delete('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+module.exports = router

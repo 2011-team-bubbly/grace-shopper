@@ -4,20 +4,13 @@ import React, {Component} from 'react'
 import AddTeaForm from '../components/AddTeaForm'
 // import AllTeas from '../components/AllTeas'
 
-export default class AdminPage extends Component {
-  render() {
-    console.log('admin page')
-    return (
-      <div>
-        <div>
-          <button id="addToInventory" type="submit" name="addToCart">
-            Add New Tea
-          </button>
-        </div>
-        <AddTeaForm />
-      </div>
-    )
-  }
+const AdminPage = () => {
+  console.log('admin page')
+  return (
+    <div>
+      <AddTeaForm />
+    </div>
+  )
 }
 
-// export default connect(null, null)(AdminPage)
+export default AdminPage

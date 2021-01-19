@@ -41,7 +41,9 @@ export const removingTea = teaId => async dispatch => {
 
 export const thunkToAddTea = newTea => async dispatch => {
   try {
-    const {data} = await axios.post('/api/teas', newTea)
+    console.log('befor axios', newTea)
+    const {data} = await axios.post('/api/admin/add', newTea)
+    console.log('after axios', newTea)
     dispatch(addTea(data))
   } catch (error) {
     console.log(error)

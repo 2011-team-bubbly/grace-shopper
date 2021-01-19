@@ -6,7 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import AllTeas from './components/AllTeas'
 import connectSingleTea from './components/SingleTea'
-import Teas from './components/Teas'
+import AdminPage from './components/Admin'
 
 /**
  * COMPONENT
@@ -17,14 +17,15 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, admin} = this.props
+    console.log('what is admin value ', admin)
 
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/Teas" component={Teas} />
+        <Route exact path="/allTeas" component={AllTeas} />
         <Route path="/allTeas/:teaId" component={connectSingleTea} />
         {isLoggedIn && (
           <Switch>
@@ -32,8 +33,15 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
+        {admin && (
+          <Switch>
+            <Route path="/add" component={AdminPage} />
+          </Switch>
+        )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
+
+        {/* admin routes */}
       </Switch>
     )
   }
@@ -46,7 +54,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    admin: state.user.admin
   }
 }
 

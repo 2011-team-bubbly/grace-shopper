@@ -3,10 +3,12 @@ import axios from 'axios'
 //action types
 const ADD_TO_CART = 'ADD_TO_CART'
 const LOAD_CART = 'LOAD_CART'
+const DELETE_ITEM = 'DELETE_ITEM'
 
 //action creators
 const addTeaToCart = (orderId, tea) => ({type: ADD_TO_CART, orderId, tea})
 const loadCart = orderItems => ({type: LOAD_CART, orderItems})
+const deleteItem = teaId => ({type: DELETE_ITEM, teaId})
 
 //thunks
 export const addingTeaToCart = (orderId, tea) => async dispatch => {
@@ -29,6 +31,15 @@ export const fetchOrders = orderId => async dispatch => {
   }
 }
 
+export const removeItem = (orderId, teaId) => async dispatch => {
+  try {
+    await axios.delete(`/api/orders/${orderId}/${teaId}`)
+    dispatch(deleteItem(teaId))
+  } catch (error) {
+    console.log('There was an error delteing.', error)
+  }
+}
+
 const initial = {
   cartItems: []
 }
@@ -38,27 +49,10 @@ export default function CartReducer(state = initial, action) {
   switch (action.type) {
     case LOAD_CART:
       return {...state, cartItems: action.orderItems}
+    case DELETE_ITEM:
+      let newList = state.cartItems.filter(item => item.id !== action.teaId)
+      return {...state, cartItems: newList}
     case ADD_TO_CART:
-    // let cartItems
-    // let teaExist = state.cartItems.some(tea => tea.id === action.tea.id)
-    // if (teaExist) {
-    //   cartItems = state.cartItems.map(tea => {
-    //     if (tea.id === action.tea.id) {
-    //       tea.quantity += 1
-    //     }
-    //     return tea
-    //   })
-    // } else {
-    //   cartItems = state.cartItems.concat([
-    //     {
-    //       orderId: action.orderId,
-    //       quantity: 1,
-    //       tea: action.tea,
-    //       teaId: action.tea.id
-    //     }
-    //   ])
-    // }
-    // return {...state, cartItems}
     default:
       return state
   }

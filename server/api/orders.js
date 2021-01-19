@@ -31,3 +31,18 @@ router.post('/:orderId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.delete('/:orderId/:teaId', async (req, res, next) => {
+  try {
+    const orderItem = await OrderItem.findOne({
+      where: {
+        orderId: req.params.orderId,
+        teaId: req.params.teaId
+      }
+    })
+    await orderItem.destroy()
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})

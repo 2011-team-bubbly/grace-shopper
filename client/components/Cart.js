@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import CartItem from './CartItem'
-import {fetchOrders} from '../store/cart'
+import {fetchOrders, removeItem} from '../store/cart'
 import {me} from '../store/user'
 
-const Cart = ({user, loadOrderItems, cartItems, loadUser}) => {
+const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
   const [products, setProducts] = useState([])
 
   useEffect(
@@ -19,9 +19,10 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser}) => {
           // setProducts(cartItems)
         } else {
           console.log('failed conditional in Cart')
-          // let localCart = JSON.parse(localStorage.getItem('products'))
-          // if (localCart) setProducts(localCart)
+          setProducts([])
         }
+        let localCart = JSON.parse(localStorage.getItem('products'))
+        if (localCart) setProducts(...products, localCart)
       }
       funk()
     },
@@ -30,15 +31,35 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser}) => {
 
   useEffect(
     () => {
-      setProducts(cartItems)
+      if (user) {
+        setProducts(cartItems)
+      } else {
+        setProducts([])
+      }
     },
     [cartItems]
   )
+  const handleRemove = productId => {
+    if (user) {
+      deleteItem(user.orders[0].id, productId)
+    } else {
+      let cart = JSON.parse(localStorage.getItem('products'))
+      let newCart = cart.filter(item => {
+        item.id !== productId
+      })
+      setProducts(newCart)
+      localStorage.setItem('products', JSON.stringify(newCart))
+    }
+  }
 
   const handleCartItems = () => {
-    console.log('handleCart', products)
+    console.log('products', products)
     return products.map(product => (
-      <CartItem key={product.id} product={product} />
+      <CartItem
+        key={product.id}
+        product={product}
+        handleRemove={handleRemove}
+      />
     ))
   }
 
@@ -71,7 +92,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadOrderItems: orderId => dispatch(fetchOrders(orderId)),
-    loadUser: () => dispatch(me())
+    // loadUser: () => dispatch(me()),
+    deleteItem: (orderId, teaId) => dispatch(removeItem(orderId, teaId))
   }
 }
 

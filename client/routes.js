@@ -6,6 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import AllTeas from './components/AllTeas'
 import connectSingleTea from './components/SingleTea'
+import Teas from './components/Teas'
 
 /**
  * COMPONENT
@@ -23,7 +24,7 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route exact path="/allTeas" component={AllTeas} />
+        <Route exact path="/Teas" component={Teas} />
         <Route path="/allTeas/:teaId" component={connectSingleTea} />
         {isLoggedIn && (
           <Switch>

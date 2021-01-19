@@ -32,6 +32,7 @@ const Navbar = ({handleClick, isLoggedIn, admin}) => {
           </div>
         )}
         <Link to="/allTeas">All Teas</Link>
+        <Link to="/cart">Cart</Link>
         {admin && <Link to="/add">add tea</Link>}
         <div>
           <button type="button" onClick={handleCart}>

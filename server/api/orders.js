@@ -13,10 +13,11 @@ router.get('/:orderId', async (req, res, next) => {
 
 router.post('/:orderId', async (req, res, next) => {
   try {
+    console.log('inside orders api')
     const [orderItem, created] = await OrderItem.findOrCreate({
       where: {
         orderId: req.params.orderId,
-        teaId: req.body.tea.id
+        teaId: req.body.id
       }
     })
     if (created) {
@@ -24,7 +25,7 @@ router.post('/:orderId', async (req, res, next) => {
     } else {
       orderItem.quantity += 1
     }
-    orderItem.subtotal = req.body.tea.price * orderItem.quantity
+    orderItem.subtotal = req.body.price * orderItem.quantity
     orderItem.save()
     res.json(orderItem)
   } catch (error) {

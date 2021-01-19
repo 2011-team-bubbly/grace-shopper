@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+import Cart from './Cart'
+
 // import AdminPage from './Admin'
 const Navbar = ({handleClick, isLoggedIn, admin}) => (
+  const [cartOpen, setCartOpen] = useState(false)
+
+  const handleCart = () => {
+    setCartOpen(!cartOpen)
+  }
   <div>
     <h1>Bubbly Bubbly Tea</h1>
     <nav>
@@ -25,10 +32,17 @@ const Navbar = ({handleClick, isLoggedIn, admin}) => (
       )}
       <Link to="/allTeas">All Teas</Link>
       {admin && <Link to="/add">add tea</Link>}
+       <div>
+          <button type="button" onClick={handleCart}>
+            CART
+          </button>
+          {cartOpen ? <Cart /> : null}
+        </div>
     </nav>
     <hr />
   </div>
 )
+
 
 /**
  * CONTAINER

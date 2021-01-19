@@ -1,27 +1,44 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingSingleDrink} from '../store/singleDrink'
+
 import AdminPage from './Admin'
+
+import {addingTeaToCart} from '../store/cart'
+
+
 class SingleTea extends Component {
   constructor(props) {
     super(props)
     this.state = {
       type: '',
-      falvor: '',
+      flavor: '',
       topping: '',
       size: '',
-      price: ''
+      price: Number
     }
     this.onAddToCartHandler = this.onAddToCartHandler.bind(this)
   }
   componentDidMount() {
     this.props.loadSingleTea(this.props.match.params.teaId)
   }
-  onAddToCartHandler() {
-    alert('this item has been added to your chart')
+  onAddToCartHandler(orderId, tea) {
+    if (this.props.user.id) {
+      console.log('in onAddToCart in singleteajs')
+      this.props.addTeaToCart(orderId, tea)
+    } else {
+      let products = []
+      if (localStorage.getItem('products')) {
+        products = JSON.parse(localStorage.getItem('products'))
+      }
+      products.push(this.props.singleTeaInReact)
+      localStorage.setItem('products', JSON.stringify(products))
+    }
   }
   render() {
-    const {singleTeaInReact} = this.props
+    const {singleTeaInReact, user} = this.props
+    let activeOrder
+    if (user.orders) activeOrder = user.orders.filter(order => order.active)
     return (
       <div>
         <main id="individual-tea">
@@ -29,12 +46,14 @@ class SingleTea extends Component {
             <p>type: {singleTeaInReact.type}</p>
             <p> flavor: {singleTeaInReact.flavor}</p>
             <p> topping: {singleTeaInReact.topping}</p>
-            <p> price: {singleTeaInReact.price}</p>
+            <p> price: ${singleTeaInReact.price / 100}</p>
             <button
               id="addToCart"
               type="submit"
               name="addToCart"
-              onClick={this.onAddToCartHandler}
+              onClick={() =>
+                this.onAddToCartHandler(activeOrder[0].id, singleTeaInReact)
+              }
             >
               ADD To Cart
             </button>
@@ -47,13 +66,15 @@ class SingleTea extends Component {
 }
 const mapStateToProps = state => {
   return {
-    singleTeaInReact: state.singleDrinkReducer
+    singleTeaInReact: state.singleDrinkReducer,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadSingleTea: teaId => dispatch(gettingSingleDrink(teaId))
+    loadSingleTea: teaId => dispatch(gettingSingleDrink(teaId)),
+    addTeaToCart: (orderId, tea) => dispatch(addingTeaToCart(orderId, tea))
   }
 }
 

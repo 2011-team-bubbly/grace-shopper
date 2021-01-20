@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {connect} from 'react-redux'
 import TeaCard from './TeaCard'
-import {fetchTeas} from '../store/TeasReducer'
 import Axios from 'axios'
 import Pagination from './Pagination'
 
@@ -48,12 +46,4 @@ export const Teas = () => {
   )
 }
 
-const mapState = state => ({
-  teas: state.teas
-})
-
-const mapDispatch = dispatch => ({
-  loadTeas: () => dispatch(fetchTeas())
-})
-
-export default connect(mapState, mapDispatch)(Teas)
+export default Teas

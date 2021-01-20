@@ -54,7 +54,6 @@ form div {
 .allTeasContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   flex-shrink: 5;
   justify-content: center;
 }
@@ -63,8 +62,8 @@ form div {
   border-style: groove;
   display: flex;
   flex-direction: row;
-  flex: wrap;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .pagination-cart {
@@ -88,4 +87,34 @@ form div {
   flex-direction: row;
   background-size: 25;
   margin-top: 10px;
+}
+.Tea-Form-wrapper {
+  padding: 5px 20px;
+  color: black;
+  border-radius: 10%;
+  background-color: chocolate;
+}
+.auth-Form-wrapper {
+  padding: 5px 20px;
+  color: black;
+  border-radius: 10%;
+  background-color: lightgrey;
+}
+.Greeting-Message {
+  padding: 5px 20px;
+  color: black;
+  background-color: chocolate;
+}
+.brand-name {
+  text-align: center;
+  background-color: chocolate;
+}
+.nav-bar {
+  text-align: center;
+  padding: 14px 16px;
+}
+.cart-wrapper {
+  padding: 5px 20px;
+  border-radius: 75%;
+  background-color: brown;
 }

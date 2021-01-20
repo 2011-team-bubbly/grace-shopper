@@ -9,7 +9,7 @@ import cartReducer from './cart'
 
 const reducer = combineReducers({
   user,
-  teas: teasReducer,
+  teasReducer,
   singleDrinkReducer,
   cart: cartReducer
 })

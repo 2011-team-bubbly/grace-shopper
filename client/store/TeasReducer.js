@@ -4,6 +4,7 @@ import axios from 'axios'
 const SET_TEAS = 'SET_TEAS'
 const REMOVE_TEA = 'REMOVE_TEA'
 const ADD_TEA = 'ADD_TEA'
+const UPDATE_TEA = 'UPDATE_TEA'
 
 //action creator
 
@@ -18,6 +19,11 @@ const setTeas = teas => ({
 })
 
 const removeTea = tea => ({type: REMOVE_TEA, tea})
+
+const updateTea = teaId => ({
+  type: UPDATE_TEA,
+  teaId
+})
 
 //thunks
 export const fetchTeas = () => async dispatch => {
@@ -38,13 +44,21 @@ export const removingTea = teaId => async dispatch => {
     console.log('unable to delete tea', err)
   }
 }
-
 export const thunkToAddTea = newTea => async dispatch => {
   try {
-    console.log('befor axios', newTea)
-    const {data} = await axios.post('/api/admin/add', newTea)
-    console.log('after axios', newTea)
+    const {data} = await axios.post('/api/teas/add', newTea)
     dispatch(addTea(data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+export const thunkToUpdateTea = teaToBeUpdated => async dispatch => {
+  try {
+    const {data} = await axios.put(
+      `/api/teas/${teaToBeUpdated}`,
+      teaToBeUpdated.id
+    )
+    dispatch(updateTea(data))
   } catch (error) {
     console.log(error)
   }
@@ -58,13 +72,20 @@ export default function teasReducer(state = initialState, action) {
       return action.teas
     case ADD_TEA:
       return {
-        ...state,
         teas: [...state.teas, action.tea]
       }
     case REMOVE_TEA:
       return {
         ...state,
         teas: state.filter(tea => tea.id !== action.teaId)
+      }
+    case UPDATE_TEA:
+      return {
+        ...state,
+        teas: state.teas.map(tea => {
+          if (tea.id !== action.tea.id) return tea
+          else return action.tea
+        })
       }
     default:
       return state

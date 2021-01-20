@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {addTea} from '../store/drinksReducer'
 import {thunkToAddTea} from '../store/TeasReducer'
 
 class AddTeaForm extends Component {
@@ -25,7 +24,7 @@ class AddTeaForm extends Component {
     })
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault()
 
     const newTea = {
@@ -36,7 +35,7 @@ class AddTeaForm extends Component {
       imageUrl: this.state.imageUrl,
       size: this.state.size
     }
-    await this.props.addTea(newTea)
+    this.props.addTea(newTea)
     this.setState({
       type: '',
       flavor: '',
@@ -49,60 +48,63 @@ class AddTeaForm extends Component {
 
   render() {
     console.log('its tea form')
-    const {type, price, imageUrl, topping} = this.state
+    const {type, price, imageUrl, topping, size} = this.state
     const {handleChange, handleSubmit} = this
     return (
-      <form onSubmit={handleSubmit} method="post">
-        <div>
-          <label htmlFor="type">type:</label>
-          <input
-            name="type"
-            type="text"
-            defaultValue={type}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="topping">Topping:</label>
-          <input
-            name="topping"
-            type="text"
-            defaultValue={topping}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="price">Price: </label>
-          <input
-            name="price"
-            type="text"
-            defaultValue={price}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="imageUrl"> image</label>
-
-          <input
-            name="imageUrl"
-            type="text"
-            defaultValue={imageUrl}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
+      <div className="Tea-Form-wrapper">
+        <h2>Add Tea</h2>
+        <form onSubmit={handleSubmit} method="post">
           <div>
-            <label htmlFor="size">size:</label>
+            <label htmlFor="type">type:</label>
             <input
-              name="size"
+              name="type"
+              type="text"
+              defaultValue={type}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="topping">Topping:</label>
+            <input
+              name="topping"
               type="text"
               defaultValue={topping}
               onChange={handleChange}
             />
           </div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+          <div>
+            <label htmlFor="price">Price: </label>
+            <input
+              name="price"
+              type="text"
+              defaultValue={price}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="imageUrl"> image</label>
+
+            <input
+              name="imageUrl"
+              type="text"
+              defaultValue={imageUrl}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <div>
+              <label htmlFor="size">size:</label>
+              <input
+                name="size"
+                type="text"
+                defaultValue={size}
+                onChange={handleChange}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
     )
   }
 }

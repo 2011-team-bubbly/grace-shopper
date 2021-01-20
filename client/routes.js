@@ -6,7 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import AllTeas from './components/AllTeas'
 import connectSingleTea from './components/SingleTea'
-import AdminPage from './components/Admin'
+import AdminPage from './components/AdminPage'
 import Cart from './components/Cart'
 
 /**

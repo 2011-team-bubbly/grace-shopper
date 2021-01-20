@@ -11,6 +11,19 @@ router.get('/:orderId', async (req, res, next) => {
   }
 })
 
+router.get('/:orderId/orderitem', async (req, res, next) => {
+  try {
+    const order = await OrderItem.findAll({
+      where: {
+        orderId: req.params.orderId
+      }
+    })
+    res.json(order)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/:orderId', async (req, res, next) => {
   try {
     const [orderItem, created] = await OrderItem.findOrCreate({
@@ -25,8 +38,17 @@ router.post('/:orderId', async (req, res, next) => {
       orderItem.quantity += 1
     }
     orderItem.subtotal = req.body.price * orderItem.quantity
-    orderItem.save()
-    res.json(orderItem)
+    await orderItem.save()
+    const order = await Order.findByPk(req.params.orderId, {
+      include: {
+        model: Tea,
+        where: {
+          id: req.body.id
+        }
+      }
+    })
+    console.log('api', order)
+    res.json(order)
   } catch (error) {
     next(error)
   }

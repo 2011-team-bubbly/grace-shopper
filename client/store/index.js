@@ -6,7 +6,6 @@ import user from './user'
 import singleDrinkReducer from './singleDrink'
 import teasReducer from './TeasReducer'
 import cartReducer from './cart'
-import {fetchOrders} from './cart'
 
 const reducer = combineReducers({
   user,

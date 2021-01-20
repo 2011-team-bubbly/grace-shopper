@@ -4,54 +4,50 @@ import CartItem from './CartItem'
 
 import PaginationCart from './PaginationCart'
 
-import {fetchOrders, removeItem} from '../store/cart'
-import {me} from '../store/user'
+import {fetchOrders, removeItem, addingTeaToCart} from '../store/cart'
 
-
-const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
+const Cart = ({user, loadOrderItems, cartItems, deleteItem, addToCart}) => {
   const [products, setProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [productsPerPage] = useState(3)
 
   useEffect(
     () => {
-      const funk = async () => {
-        console.log('user', user)
-        if (user.orders) {
-          //axios request to get all their Order items?
-          console.log('in useeffect cart')
-          loadOrderItems(user.orders[0].id)
-          console.log('cartItems', cartItems)
-          // setProducts(cartItems)
-        } else {
-          console.log('failed conditional in Cart')
-          setProducts([])
-        }
-        let localCart = JSON.parse(localStorage.getItem('products'))
-        if (localCart) setProducts(...products, localCart)
+      if (user.orders) {
+        loadOrderItems(user.orders[0].id)
       }
-      funk()
     },
     [user]
   )
 
   useEffect(
     () => {
-      if (user) {
+      console.log('is there a user', !!user.id)
+      if (user.id) {
+        let localCart = JSON.parse(localStorage.getItem('products'))
+        if (localCart) {
+          localCart.map(item => addToCart(user.orders[0].id, item))
+          localStorage.setItem('products', JSON.stringify([]))
+        }
         setProducts(cartItems)
+
+        // loadOrderItems(user.orders[0].id)
+        // setProducts([...products, ...cartItems])
       } else {
-        setProducts([])
+        let localCart = JSON.parse(localStorage.getItem('products'))
+        if (localCart) setProducts(localCart)
       }
     },
-    [cartItems]
+    [user, cartItems]
   )
+
   const handleRemove = productId => {
     if (user) {
       deleteItem(user.orders[0].id, productId)
     } else {
       let cart = JSON.parse(localStorage.getItem('products'))
       let newCart = cart.filter(item => {
-        item.id !== productId
+        return item.id !== productId
       })
       setProducts(newCart)
       localStorage.setItem('products', JSON.stringify(newCart))
@@ -68,8 +64,6 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
   const paginate = pageNumber => setCurrentPage(pageNumber)
 
   const handleCartItems = () => {
-
-    console.log('products', products)
     return currentProducts.map(product => (
       <CartItem
         key={product.id}
@@ -81,9 +75,14 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
 
   const handleSubtotal = () => {
     let subtotal = products.reduce((accumulator, currentVal) => {
-      return accumulator + currentVal.price
+      return (
+        accumulator +
+        currentVal.price *
+          (currentVal.orderItem
+            ? currentVal.orderItem.quantity
+            : currentVal.quantity)
+      )
     }, 0)
-
     return <div>SUBTOTAL: ${subtotal / 100}</div>
   }
 
@@ -100,7 +99,7 @@ const Cart = ({user, loadOrderItems, cartItems, loadUser, deleteItem}) => {
     )
   }
 
-  return <div id="cart">{products.length ? handleCart() : 'EMPTY'}</div>
+  return <div id="cart">{products ? handleCart() : 'EMPTY'}</div>
 }
 
 const mapState = state => {
@@ -113,8 +112,8 @@ const mapState = state => {
 const mapDispatch = dispatch => {
   return {
     loadOrderItems: orderId => dispatch(fetchOrders(orderId)),
-    // loadUser: () => dispatch(me()),
-    deleteItem: (orderId, teaId) => dispatch(removeItem(orderId, teaId))
+    deleteItem: (orderId, teaId) => dispatch(removeItem(orderId, teaId)),
+    addToCart: (orderId, tea) => dispatch(addingTeaToCart(orderId, tea))
   }
 }
 

@@ -2,7 +2,6 @@ import React from 'react'
 import AddTeaForm from './AddTeaForm'
 import AllTeasForAdmin from './AllTeasForAdmin'
 
-
 const AdminPage = () => {
   return (
     <div>

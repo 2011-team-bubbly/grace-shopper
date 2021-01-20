@@ -375,6 +375,12 @@ async function seed() {
     }),
     Order.create({
       userId: 4
+    }),
+    Order.create({
+      userId: 7
+    }),
+    Order.create({
+      userId: 8
     })
   ])
 

@@ -14,8 +14,8 @@ const deleteItem = teaId => ({type: DELETE_ITEM, teaId})
 export const addingTeaToCart = (orderId, tea) => async dispatch => {
   try {
     const {data} = await axios.post(`/api/orders/${orderId}`, tea)
-    console.log(data)
-    dispatch(addTeaToCart(orderId, data))
+    console.log('addin tea to cart', data.teas[0])
+    dispatch(addTeaToCart(orderId, data.teas[0]))
   } catch (error) {
     console.log('There was an error in the axios addingTeaToCart', error)
   }
@@ -23,7 +23,6 @@ export const addingTeaToCart = (orderId, tea) => async dispatch => {
 
 export const fetchOrders = orderId => async dispatch => {
   try {
-    console.log('fecthorder thunk')
     const {data} = await axios.get(`/api/orders/${orderId}`)
     dispatch(loadCart(data.teas))
   } catch (error) {
@@ -50,9 +49,12 @@ export default function CartReducer(state = initial, action) {
     case LOAD_CART:
       return {...state, cartItems: action.orderItems}
     case DELETE_ITEM:
-      let newList = state.cartItems.filter(item => item.id !== action.teaId)
-      return {...state, cartItems: newList}
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(item => item.id !== action.teaId)
+      }
     case ADD_TO_CART:
+      return {...state, cartItems: [...state.cartItems, action.tea]}
     default:
       return state
   }

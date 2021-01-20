@@ -10,7 +10,7 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="auth-Form-wrapper">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
@@ -38,7 +38,7 @@ const AuthForm2 = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="auth-Form-wrapper">
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="firstName">

@@ -10,7 +10,15 @@ router.get('/', async (req, res, next) => {
       // send everything to anyone who asks!
       attributes: ['id', 'email']
     })
-    res.json(users)
+    // const userId = req.query.id
+    // const user = await User.findByPk(userId)
+    // console.log('whats is ', req.user)
+    if (req.user.dataValues.admin) {
+      //user is admin
+      res.json(users)
+    } else {
+      throw new Error('Not Authorized!')
+    }
   } catch (err) {
     next(err)
   }

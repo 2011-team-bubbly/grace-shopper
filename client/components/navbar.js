@@ -13,8 +13,8 @@ const Navbar = ({handleClick, isLoggedIn, admin}) => {
   }
 
   return (
-    <div>
-      <h1>Bubbly Bubbly Tea</h1>
+    <div className="nav-bar">
+      <h1 className="brand-name">Bubbly Bubbly Tea</h1>
       <nav>
         {isLoggedIn ? (
           <div>
@@ -31,12 +31,12 @@ const Navbar = ({handleClick, isLoggedIn, admin}) => {
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
-  
+
         <Link to="/allTeas">All Teas</Link>
         <Link to="/cart">Cart</Link>
         {admin && <Link to="/add">add tea</Link>}
-         
-        <div>
+
+        <div className="cart-wrapper">
           <button type="button" onClick={handleCart}>
             CART
           </button>

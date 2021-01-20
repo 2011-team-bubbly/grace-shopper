@@ -51,8 +51,8 @@ class AddTeaForm extends Component {
     const {type, price, imageUrl, topping, size} = this.state
     const {handleChange, handleSubmit} = this
     return (
-      <div>
-        <h3>Add Teas</h3>
+      <div className="Tea-Form-wrapper">
+        <h2>Add Tea</h2>
         <form onSubmit={handleSubmit} method="post">
           <div>
             <label htmlFor="type">type:</label>

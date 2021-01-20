@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingSingleDrink} from '../store/singleDrink'
 import {me} from '../store/user'
-import AdminPage from './Admin'
 
 import {addingTeaToCart} from '../store/cart'
 

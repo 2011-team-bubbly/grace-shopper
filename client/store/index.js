@@ -10,7 +10,7 @@ import {fetchOrders} from './cart'
 
 const reducer = combineReducers({
   user,
-  teas: teasReducer,
+  teasReducer,
   singleDrinkReducer,
   cart: cartReducer
 })

@@ -5,20 +5,20 @@ import AdminPage from '../components/Admin'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+export const UserHome = (props) => {
   const {email} = props
   const {admin} = props
 
-  return <h3>Welcome, {email}</h3>
+  return <div>{admin ? <AdminPage /> : <h3>Welcome, {email}</h3>}</div>
 }
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     email: state.user.email,
-    admin: state.user.admin
+    admin: state.user.admin,
   }
 }
 
@@ -28,5 +28,5 @@ export default connect(mapState)(UserHome)
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  email: PropTypes.string,
 }

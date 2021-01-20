@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-// import {addTea} from '../store/drinksReducer'
 import {thunkToAddTea} from '../store/TeasReducer'
 
 class AddTeaForm extends Component {
@@ -25,7 +24,7 @@ class AddTeaForm extends Component {
     })
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     evt.preventDefault()
 
     const newTea = {
@@ -36,7 +35,7 @@ class AddTeaForm extends Component {
       imageUrl: this.state.imageUrl,
       size: this.state.size
     }
-    await this.props.addTea(newTea)
+    this.props.addTea(newTea)
     this.setState({
       type: '',
       flavor: '',

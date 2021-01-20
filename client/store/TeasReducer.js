@@ -58,7 +58,6 @@ export default function teasReducer(state = initialState, action) {
       return action.teas
     case ADD_TEA:
       return {
-        ...state,
         teas: [...state.teas, action.tea]
       }
     case REMOVE_TEA:

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import AdminPage from '../components/Admin'
+import AdminPage from './AdminPage'
 /**
  * COMPONENT
  */
@@ -9,7 +9,7 @@ export const UserHome = props => {
   const {email} = props
   const {admin} = props
 
-  return <h3>Welcome, {email}</h3>
+  return <div>{admin ? <AdminPage /> : <h3>Welcome, {email}</h3>}</div>
 }
 
 /**

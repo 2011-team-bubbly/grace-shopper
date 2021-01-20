@@ -54,7 +54,6 @@ form div {
 .allTeasContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   flex-shrink: 5;
   justify-content: center;
 }
@@ -63,8 +62,8 @@ form div {
   border-style: groove;
   display: flex;
   flex-direction: row;
-  flex: wrap;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .pagination-cart {

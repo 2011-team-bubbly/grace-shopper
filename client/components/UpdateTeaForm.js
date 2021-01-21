@@ -91,7 +91,7 @@ class UpdateTeaForm extends Component {
             />
           </div>
           <div>
-            <label htmlFor="imageUrl"> image</label>
+            <label htmlFor="imageUrl">Image</label>
 
             <input
               name="imageUrl"
@@ -102,7 +102,7 @@ class UpdateTeaForm extends Component {
           </div>
           <div>
             <div>
-              <label htmlFor="size">size:</label>
+              <label htmlFor="size">Size:</label>
               <input
                 name="size"
                 type="text"

@@ -37,6 +37,7 @@ class SingleTea extends Component {
     const {singleTeaInReact, user} = this.props
     let activeOrder
     if (user.orders) activeOrder = user.orders.filter(order => order.active)
+
     return (
       <div>
         <main id="individual-tea">

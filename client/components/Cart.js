@@ -1,20 +1,39 @@
 import React, {useState, useEffect} from 'react'
-import {connect} from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 import CartItem from './CartItem'
+import Checkout from './Checkout'
 
 import PaginationCart from './PaginationCart'
 
 import {fetchOrders, removeItem, addingTeaToCart} from '../store/cart'
+import {me} from '../store/user'
 
-const Cart = ({user, loadOrderItems, cartItems, deleteItem, addToCart}) => {
+const Cart = ({
+  user,
+  loadOrderItems,
+  cartItems,
+  deleteItem,
+  addToCart,
+  loadUser
+}) => {
   const [products, setProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [productsPerPage] = useState(3)
+  const [checkout, setCheckout] = useState(false)
+
+  useEffect(
+    () => {
+      loadUser()
+    },
+    [checkout]
+  )
 
   useEffect(
     () => {
       if (user.orders) {
-        loadOrderItems(user.orders[0].id)
+        // loadUser()
+        let activeOrder = user.orders.filter(order => order.active)[0]
+        loadOrderItems(activeOrder.id)
       }
     },
     [user]
@@ -22,13 +41,15 @@ const Cart = ({user, loadOrderItems, cartItems, deleteItem, addToCart}) => {
 
   useEffect(
     () => {
-      console.log('is there a user', !!user.id)
       if (user.id) {
+        let activeOrder = user.orders.filter(order => order.active)[0]
+
         let localCart = JSON.parse(localStorage.getItem('products'))
         if (localCart) {
-          localCart.map(item => addToCart(user.orders[0].id, item))
+          localCart.map(item => addToCart(activeOrder.id, item))
           localStorage.setItem('products', JSON.stringify([]))
         }
+        console.log('CARTITEMS-----------', cartItems)
         setProducts(cartItems)
 
         // loadOrderItems(user.orders[0].id)
@@ -42,8 +63,9 @@ const Cart = ({user, loadOrderItems, cartItems, deleteItem, addToCart}) => {
   )
 
   const handleRemove = productId => {
-    if (user) {
-      deleteItem(user.orders[0].id, productId)
+    if (user.id) {
+      let activeOrder = user.orders.filter(order => order.active)[0]
+      deleteItem(activeOrder.id, productId)
     } else {
       let cart = JSON.parse(localStorage.getItem('products'))
       let newCart = cart.filter(item => {
@@ -99,7 +121,26 @@ const Cart = ({user, loadOrderItems, cartItems, deleteItem, addToCart}) => {
     )
   }
 
-  return <div id="cart">{products ? handleCart() : 'EMPTY'}</div>
+  return (
+    <>
+      <div id="cart">{products ? handleCart() : 'EMPTY'}</div>
+
+      {products.length ? (
+        checkout ? (
+          <Checkout
+            setCheckout={setCheckout}
+            products={products}
+            handleSubtotal={handleSubtotal}
+            setProducts={setProducts}
+          />
+        ) : (
+          <button type="button" onClick={() => setCheckout(true)}>
+            CHECKOUT
+          </button>
+        )
+      ) : null}
+    </>
+  )
 }
 
 const mapState = state => {
@@ -113,7 +154,8 @@ const mapDispatch = dispatch => {
   return {
     loadOrderItems: orderId => dispatch(fetchOrders(orderId)),
     deleteItem: (orderId, teaId) => dispatch(removeItem(orderId, teaId)),
-    addToCart: (orderId, tea) => dispatch(addingTeaToCart(orderId, tea))
+    addToCart: (orderId, tea) => dispatch(addingTeaToCart(orderId, tea)),
+    loadUser: () => dispatch(me())
   }
 }
 

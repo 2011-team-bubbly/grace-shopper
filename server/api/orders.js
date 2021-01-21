@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, OrderItem, Tea} = require('../db/models')
+const {Order, OrderItem, Tea, User} = require('../db/models')
 module.exports = router
 
 router.get('/:orderId', async (req, res, next) => {
@@ -64,6 +64,23 @@ router.delete('/:orderId/:teaId', async (req, res, next) => {
     })
     await orderItem.destroy()
     res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/checkout/:orderId', async (req, res, next) => {
+  try {
+    const curOrder = await Order.findByPk(req.params.orderId)
+    curOrder.active = false
+    await curOrder.save()
+
+    const user = await User.findByPk(req.body.id)
+    await Order.create({
+      userId: user.id,
+      active: true
+    })
+    res.sendStatus(200)
   } catch (error) {
     next(error)
   }

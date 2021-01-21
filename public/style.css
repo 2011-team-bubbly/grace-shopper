@@ -1,5 +1,6 @@
 body {
-  font-family: sans-serif;
+  font-family: papyrus;
+  background: beige;
 }
 
 a {
@@ -10,14 +11,26 @@ label {
   display: block;
 }
 
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 nav a {
   display: inline-block;
   margin: 1em;
+  /* width: 700px; */
+  /* height: 1000px; */
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+h1 {
+  text-align: center;
 }
 
 .pagination {
@@ -60,6 +73,7 @@ form div {
 
 .all-teas {
   border-style: groove;
+  border-radius: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -107,6 +121,7 @@ form div {
 }
 .brand-name {
   text-align: center;
+  border-radius: 5px;
   background-color: chocolate;
 }
 .nav-bar {
@@ -115,6 +130,7 @@ form div {
 }
 .cart-wrapper {
   padding: 5px 20px;
-  border-radius: 75%;
+  border-radius: 40%;
   background-color: brown;
+  justify-self: end;
 }

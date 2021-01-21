@@ -18,7 +18,7 @@ const setTeas = teas => ({
   teas
 })
 
-const removeTea = tea => ({type: REMOVE_TEA, tea})
+const removeTea = teaId => ({type: REMOVE_TEA, teaId})
 
 const updateTea = teaId => ({
   type: UPDATE_TEA,
@@ -30,7 +30,6 @@ export const fetchTeas = () => async dispatch => {
   try {
     const {data} = await axios.get('api/teas')
     dispatch(setTeas(data))
-    console.log('this is data in redux', data)
   } catch (error) {
     console.log(error)
   }
@@ -39,7 +38,7 @@ export const fetchTeas = () => async dispatch => {
 export const removingTea = teaId => async dispatch => {
   try {
     const {data} = await axios.delete(`/api/teas/${teaId}`)
-    dispatch(removeTea(data))
+    dispatch(removeTea(teaId))
   } catch (err) {
     console.log('unable to delete tea', err)
   }
@@ -63,13 +62,15 @@ export const thunkToUpdateTea = teaToBeUpdated => async dispatch => {
     console.log(error)
   }
 }
+
 const initialState = {
   teas: []
 }
+
 export default function teasReducer(state = initialState, action) {
   switch (action.type) {
     case SET_TEAS:
-      return action.teas
+      return {teas: action.teas}
     case ADD_TEA:
       return {
         teas: [...state.teas, action.tea]
@@ -77,7 +78,7 @@ export default function teasReducer(state = initialState, action) {
     case REMOVE_TEA:
       return {
         ...state,
-        teas: state.filter(tea => tea.id !== action.teaId)
+        teas: state.teas.filter(tea => tea.id !== action.teaId)
       }
     case UPDATE_TEA:
       return {

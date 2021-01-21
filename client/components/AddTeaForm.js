@@ -48,7 +48,7 @@ class AddTeaForm extends Component {
 
   render() {
     console.log('its tea form')
-    const {type, price, imageUrl, topping, size} = this.state
+    const {type, price, imageUrl, topping, flavor, size} = this.state
     const {handleChange, handleSubmit} = this
     return (
       <div className="Tea-Form-wrapper">
@@ -59,7 +59,16 @@ class AddTeaForm extends Component {
             <input
               name="type"
               type="text"
-              defaultValue={type}
+              value={type}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="flavor">Flavor:</label>
+            <input
+              name="flavor"
+              type="text"
+              value={flavor}
               onChange={handleChange}
             />
           </div>
@@ -68,7 +77,7 @@ class AddTeaForm extends Component {
             <input
               name="topping"
               type="text"
-              defaultValue={topping}
+              value={topping}
               onChange={handleChange}
             />
           </div>
@@ -77,27 +86,27 @@ class AddTeaForm extends Component {
             <input
               name="price"
               type="text"
-              defaultValue={price}
+              value={price}
               onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="imageUrl"> image</label>
+            <label htmlFor="imageUrl"> Image</label>
 
             <input
               name="imageUrl"
               type="text"
-              defaultValue={imageUrl}
+              value={imageUrl}
               onChange={handleChange}
             />
           </div>
           <div>
             <div>
-              <label htmlFor="size">size:</label>
+              <label htmlFor="size">Size:</label>
               <input
                 name="size"
                 type="text"
-                defaultValue={size}
+                value={size}
                 onChange={handleChange}
               />
             </div>

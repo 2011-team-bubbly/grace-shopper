@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Tea, User} = require('../db/models')
+const {Tea} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -65,13 +65,12 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:teaId', async (req, res, next) => {
   try {
-    // const userId = req.query.userId
-    // const user = await User.findByPk(userId)
     if (req.user.dataValues.admin) {
-      await Tea.update({where: {id: req.params.id}})
-      res.sendStatus(204)
+      const updatedTea = await Tea.findByPk(req.params.teaId)
+      await updatedTea.update(req.body)
+      res.status(204).send(updatedTea)
     } else {
       throw new Error('Not Authorized!')
     }

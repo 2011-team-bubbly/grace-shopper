@@ -2,34 +2,36 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {gettingSingleDrink} from '../store/singleDrink'
 import {me} from '../store/user'
+
 import {addingTeaToCart} from '../store/cart'
+import UpdateTeaForm from './UpdateTeaForm'
 
 class SingleTea extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      type: '',
-      flavor: '',
-      topping: '',
-      size: '',
-      price: Number
-    }
     this.onAddToCartHandler = this.onAddToCartHandler.bind(this)
   }
   componentDidMount() {
     this.props.loadSingleTea(this.props.match.params.teaId)
-    this.props.loadUser()
   }
+
   onAddToCartHandler(orderId, tea) {
+    const singleTea = this.props.singleTeaInReact
     if (this.props.user.id) {
-      console.log('in onAddToCart in singleteajs')
       this.props.addTeaToCart(orderId, tea)
     } else {
       let products = []
       if (localStorage.getItem('products')) {
         products = JSON.parse(localStorage.getItem('products'))
       }
-      products.push(this.props.singleTeaInReact)
+      if (products.some(product => product.id === singleTea.id)) {
+        products.map(product => {
+          if (product.id === singleTea.id) product.quantity++
+        })
+      } else {
+        singleTea.quantity = 1
+        products.push(singleTea)
+      }
       localStorage.setItem('products', JSON.stringify(products))
     }
   }
@@ -51,14 +53,19 @@ class SingleTea extends Component {
               type="submit"
               name="addToCart"
               onClick={() =>
-                this.onAddToCartHandler(activeOrder[0].id, singleTeaInReact)
+                this.onAddToCartHandler(
+                  user.orders ? activeOrder[0].id : null,
+                  singleTeaInReact
+                )
               }
             >
               ADD To Cart
             </button>
           </div>
         </main>
+
         <div />
+        <UpdateTeaForm id={singleTeaInReact.id} />
       </div>
     )
   }
@@ -78,6 +85,8 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const connectSingleTea = connect(mapStateToProps, mapDispatchToProps)(SingleTea)
+const connectSingleTeaAdmin = connect(mapStateToProps, mapDispatchToProps)(
+  SingleTea
+)
 
-export default connectSingleTea
+export default connectSingleTeaAdmin

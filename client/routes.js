@@ -8,6 +8,7 @@ import AllTeas from './components/AllTeas'
 import connectSingleTea from './components/SingleTea'
 import AdminPage from './components/AdminPage'
 import Cart from './components/Cart'
+import connectSingleTeaAdmin from './components/SingleTeaAdmin'
 
 /**
  * COMPONENT
@@ -19,7 +20,6 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn, admin} = this.props
-    console.log('what is admin value ', admin)
 
     return (
       <Switch>
@@ -28,6 +28,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/allTeas" component={AllTeas} />
         <Route path="/allTeas/:teaId" component={connectSingleTea} />
+        <Route path="/admin/:teaId" component={connectSingleTeaAdmin} />
         <Route path="/cart" component={Cart} />
         {isLoggedIn && (
           <Switch>

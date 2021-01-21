@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {connect, useDispatch, useSelector} from 'react-redux'
-import TeaCard from './TeaCard'
-import {removingTea} from '../store/TeasReducer'
-import Axios from 'axios'
+import TeaCard from './TeaCardForAdmin'
+import {fetchTeas, removingTea} from '../store/TeasReducer'
 import Pagination from './Pagination'
-import {fetchTeas} from '../store/TeasReducer'
 
 export const Teas = ({teas}) => {
   const [teaDrinks, setTeaDrinks] = useState([])
@@ -12,7 +10,6 @@ export const Teas = ({teas}) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [teasPerPage] = useState(16)
   const allTeas = useSelector(state => state.teas.teas)
-  // console.log('all teas', allTeas)
 
   useEffect(() => {
     getTeas()

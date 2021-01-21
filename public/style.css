@@ -118,3 +118,16 @@ form div {
   border-radius: 75%;
   background-color: brown;
 }
+
+.UpdateTea-Form-wrapper {
+  padding: 5px 20px;
+  color: black;
+  border-radius: 10%;
+  background-color: chocolate;
+}
+
+.UpdateSingle-tea {
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+}

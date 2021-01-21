@@ -8,12 +8,11 @@ router.get('/', async (req, res, next) => {
     // const userId = req.query.userId
     // const user = await User.findByPk(userId)
     // console.log('whats is ', req.teas)
-    if (req.user.dataValues.admin) {
-      //user is admin
-      res.send(allTeas)
-    } else {
-      throw new Error('Not Authorized!')
-    }
+
+    res.send(allTeas)
+    // } else {
+    //   throw new Error('Not Authorized!')
+    // }
   } catch (error) {
     next(error)
   }
@@ -42,6 +41,7 @@ router.post('/add', async (req, res, next) => {
     // const user = await User.findByPk(userId)
     if (req.user.dataValues.admin) {
       const newTea = await Tea.create(addTea)
+      console.log('new tea from route', newTea)
       res.json(newTea)
     } else {
       throw new Error(401)

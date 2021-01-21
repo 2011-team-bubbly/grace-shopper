@@ -347,40 +347,48 @@ async function seed() {
 
   const orders = await Promise.all([
     Order.create({
-      userId: 1
+      userId: 1,
+      active: true
+    }),
+    Order.create({
+      userId: 2,
+      active: true
     }),
     Order.create({
       userId: 2
     }),
     Order.create({
-      userId: 2
-    }),
-    Order.create({
       userId: 1
     }),
     Order.create({
-      userId: 6
+      userId: 6,
+      active: true
     }),
     Order.create({
-      userId: 3
+      userId: 3,
+      active: true
+    }),
+    Order.create({
+      userId: 4,
+      active: true
+    }),
+    Order.create({
+      userId: 5,
+      active: true
+    }),
+    Order.create({
+      userId: 6
     }),
     Order.create({
       userId: 4
     }),
     Order.create({
-      userId: 5
+      userId: 7,
+      active: true
     }),
     Order.create({
-      userId: 6
-    }),
-    Order.create({
-      userId: 4
-    }),
-    Order.create({
-      userId: 7
-    }),
-    Order.create({
-      userId: 8
+      userId: 8,
+      active: true
     })
   ])
 
